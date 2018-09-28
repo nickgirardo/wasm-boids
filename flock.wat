@@ -20,8 +20,8 @@
   (import "env" "log2"
     (func $log2f (param f32) (param f32))
   )
-  (global $count (mut i32) (i32.const 0))
-  (global $pos_head (mut i32) (i32.const 0))
+  (global $count (import "env" "count") i32)
+  (global $pos_head (import "env" "pos_head") i32)
 
   ;; Returns location of velocity for given boid
   (func $vel
@@ -346,25 +346,10 @@
   )
 
   (func (export "update")
-    (param $count i32)
     (param $max_x f32)
     (param $max_y f32)
 
     (local $current i32)
-
-    ;; TODO: set elsewhere to avoid resetting every frame
-    ;; This is unchanging as we assume that the amount of boids must not change
-    (set_global $pos_head
-      (i32.add
-        (i32.const 32)
-        (i32.mul
-          (get_local $count)
-          (i32.const 8)
-        )
-      )
-    )
-
-    (set_global $count (get_local $count))
 
     (set_local $current (i32.const 0))
 
@@ -372,7 +357,7 @@
       (loop $top
         (br_if
           $break
-          (i32.eq (get_local $current) (get_local $count))
+          (i32.eq (get_local $current) (get_global $count))
         )
 
         ;; This stores the result of seperation at memory location 8

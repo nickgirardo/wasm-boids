@@ -66,7 +66,7 @@ function update() {
   // TODO shouldn't need to pass in boid count
   // Make a function to set it once so it doesn't need to be done every frame
   // The program does not currently support changing count of boids
-  wasmUpdate(count, canvas.width, canvas.height);
+  wasmUpdate(canvas.width, canvas.height);
 
   draw();
 
@@ -80,7 +80,13 @@ function init() {
   const log = a => console.log(a);
   const log2 = (a,b) => console.log(a,b);
 
-  loadWasm("flock.wasm", {env: {mem: memory, log, log2}})
+  // Globals to pass to wasm
+  // Count of boids
+  const globalCount = new WebAssembly.Global({value: 'i32'}, count);
+  // Start of memory location where positions are stored
+  const globalPosHead = new WebAssembly.Global({value: 'i32'}, 32+(count*8));
+
+  loadWasm("flock.wasm", {env: {mem: memory, count:globalCount, pos_head:globalPosHead, log, log2}})
     .then(instance => {
       wasmUpdate = instance.exports['update'];
 
