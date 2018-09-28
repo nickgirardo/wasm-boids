@@ -7,16 +7,21 @@ const ctx = canvas.getContext('2d', { antialias: false });
 // The program currently does not support changing this at run time
 const count = 500;
 
-// TODO: this defines one page of memory for wasm to use (64KB)
-// 16B used statically and each boid needs 16B so one page only
-// will hold 4094 boids, which is way way more than what my machine
-// can handle updating the logic for, but it won't be hard to fix
-const memory = new WebAssembly.Memory({initial:1, maximum:1});
-let wasmUpdate;
+// Calculate how many pages are needed
+// Memory needs never change because there are a fixed amount of boids
+// Each page has 64KB (64*1024B)
+// 32B used statically and each boid needs 16B
+// This isn't very necessary as one page is enough for 4094 boids which
+// is way way more than most machines will be capable of simulating
+const memoryPagesNeeded = Math.ceil((count*16) / (64*1024 - 32));
+const memory = new WebAssembly.Memory({initial:memoryPagesNeeded, maximum:memoryPagesNeeded});
 
 // Views to memory buffer
 const velocities = new Float32Array(memory.buffer, 32, count*2)
 const positions = new Float32Array(memory.buffer, 32 + count*8, count*2)
+
+// This will be set to hold the update function from wasm
+let wasmUpdate;
 
 // Loads a wasm instance from its path and an import object
 // TODO: investigate using recommended instantiateStreaming method
