@@ -18,6 +18,11 @@ html, body {
     justify-content: center;
 }
 
+#desc {
+    position: fixed;
+    padding: 1em;
+}
+
 #error-handler {
     background-color: blue;
     color: white;
