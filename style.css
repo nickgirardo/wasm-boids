@@ -1,0 +1,32 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#container {
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#error-handler {
+    background-color: blue;
+    color: white;
+    padding: 1em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: none;
+}
