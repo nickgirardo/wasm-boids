@@ -1,7 +1,7 @@
 # wasm-boids
 Demonstration of webassembly using classic boids simulation
 
-Check it out [here!](nickgirardo.github.io/animation-tests/wasm-boids/)
+Check it out [here!](https://nickgirardo.github.io/animation-tests/wasm-boids/)
 
 ## Building
 The only processing which needs to be done on this is compiling `flock.wat` which is WebAssembly text format to the binary representation of WebAssembly.
