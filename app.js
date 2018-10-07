@@ -73,8 +73,16 @@ function update() {
   window.requestAnimationFrame(update);
 }
 
-function init() {
+function wasmSupported() {
+  return (
+    typeof window['WebAssembly'] === 'object' &&
+    typeof window['WebAssembly'].instantiate === 'function' &&
+    typeof window['WebAssembly'].Global === 'function'
+  );
+}
 
+// Function to be called once we have confirmed the user's browser can run wasm
+function initWithWasm() {
   window.addEventListener('resize', resize);
 
   const log = a => console.log(a);
@@ -100,4 +108,9 @@ function init() {
     });
 }
 
-init();
+if(!wasmSupported()) {
+  document.querySelector('#no-wasm').style.display = 'block';
+  document.querySelector('#wasm-supported').style.display = 'none';
+} else {
+  initWithWasm();
+}

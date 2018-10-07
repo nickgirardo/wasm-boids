@@ -10,13 +10,23 @@
       <p>If you refresh the page you will be able to start over.  Please send me the message bellow so I can fix this issue.</p>
       <pre id="error-message"></pre>
     </div>
-    <div id="desc">
-      <h1>WebAssembly Boids</h1>
-      <p>A recreation of the classic boids simulation in WebAssembly.</p>
-      <p>Check out the source <a href='https://github.com/nickgirardo/wasm-boids'>here</a>.</p>
-      <p>You can learn more about the boids simulation <a href='https://en.wikipedia.org/wiki/Boids'>on Wikipedia</a>.</p>
+
+    <div id="no-wasm">
+      <h1>WebAssembly not supported</h1>
+      <p>Your browser does not support WebAssembly or a specific feature of WebAssembly (such as WebAssembly.Global)</p>
+      <p>WebAssembly is a web standard developed by the W3C.  If your browser can not run it, you may want to update your browser or switch to a different browser (I recommend <a href="https://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a>).
+      <p>You can learn more about WebAssembly <a href="https://en.wikipedia.org/wiki/WebAssembly">on Wikipedia</a> or on the <a href="https://webassembly.org/">official WebAssembly website</a>.
     </div>
-    <canvas></canvas>
+
+    <div id="wasm-supported">
+      <div id="desc">
+        <h1>WebAssembly Boids</h1>
+        <p>A recreation of the classic boids simulation in WebAssembly.</p>
+        <p>Check out the source <a href='https://github.com/nickgirardo/wasm-boids'>here</a>.</p>
+        <p>You can learn more about the boids simulation <a href='https://en.wikipedia.org/wiki/Boids'>on Wikipedia</a>.</p>
+      </div>
+      <canvas></canvas>
+    </div>
 
     <script src="app.js"></script>
   </body>

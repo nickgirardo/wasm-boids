@@ -18,9 +18,17 @@ html, body {
     justify-content: center;
 }
 
-#desc {
+#desc, #no-wasm {
     position: fixed;
     padding: 1em;
+}
+
+#desc>p, #no-wasm>p {
+    max-width: 80ch;
+}
+
+#no-wasm {
+    display: none;
 }
 
 #error-handler {
