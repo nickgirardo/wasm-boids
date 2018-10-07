@@ -64,6 +64,3 @@ Constants (e.g. boid friction, the effectiveness of each of the three rules) are
 
 Boids are updated as the simulation advances, meaning that some boids will have the previous frame values and some will have the next frame values at any given point in time.
 I decided to leave this unchanged as it wasn't causing any real issues, but it should be kept in mind.
-
-Lastly, many browsers still lack wasm support.
-Displaying a message when such browsers attempt to load the page should be easy.
