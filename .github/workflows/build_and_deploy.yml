@@ -13,7 +13,7 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v2
       - name: Install dependencies
-        run: apt install wabt binaryen
+        run: sudo apt install wabt binaryen
       - name: Build project
         run: ./build.sh
       - name: Sync PDF
